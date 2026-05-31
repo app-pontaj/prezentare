@@ -1453,24 +1453,33 @@ html,body {
   }
 }
 
-/* FIX GITHUB MOBILE — paginile nu mai rămân goale */
+
+/* FIX FINAL TELEFON — conținut vizibil pe toate paginile */
 @media(max-width:900px) {
+  .slide.active,
+  .slide.active * {
+    visibility:visible !important;
+  }
+
+  .slide.active .hero,
+  .slide.active .hero *,
+  .slide.active .cards,
   .slide.active .card,
-  .slide.active .phone,
+  .slide.active .showcase,
   .slide.active .copy,
-  .slide.active .device,
+  .slide.active .copy *,
+  .slide.active .bullets,
   .slide.active .bullet,
-  .slide.active .orar-copy,
-  .slide.active .orar-feature,
-  .slide.active .orar-divider,
-  .slide.active .orar-device,
-  .slide.active .multi-copy,
-  .slide.active .multi-feature,
-  .slide.active .multi-divider,
-  .slide.active .multi-device,
+  .slide.active .device,
+  .slide.active .device *,
+  .slide.active .orar-premium,
+  .slide.active .orar-premium *,
+  .slide.active .multi-premium,
+  .slide.active .multi-premium *,
+  .slide.active .full-title,
+  .slide.active .counter,
   .slide.active .whatsapp-card,
-  .slide.active .whatsapp-note,
-  .slide.active .whatsapp-arrow {
+  .slide.active .whatsapp-card * {
     opacity:1 !important;
   }
 
@@ -1479,19 +1488,14 @@ html,body {
   .slide.active .orar-copy,
   .slide.active .orar-device,
   .slide.active .multi-copy,
-  .slide.active .multi-device {
+  .slide.active .multi-device,
+  .slide.active .card,
+  .slide.active .phone {
     transform:none !important;
   }
 
   .slide {
-    min-height:100svh;
-    overflow:hidden;
-  }
-
-  .showcase,
-  .orar-premium,
-  .multi-premium {
-    max-height:none !important;
+    overflow:hidden !important;
   }
 }
 
@@ -1842,37 +1846,22 @@ window.addEventListener('touchend', e => {
 }, { passive:true });
 </script>
 
+
+
 <script>
-/* FIX GITHUB PAGES / MOBILE INIT */
+/* FIX FINAL TELEFON — init sigur */
 (function(){
-  function ensureVisible(){
+  function initSlides(){
     var slides = document.querySelectorAll('.slide');
     if(!slides.length) return;
 
-    var hasActive = false;
-    slides.forEach(function(s){
-      if(s.classList.contains('active')) hasActive = true;
-    });
-
-    if(!hasActive){
-      slides[0].classList.add('active');
-    }
-
-    slides.forEach(function(s, i){
-      if(!s.classList.contains('active')){
-        s.style.visibility = 'hidden';
-        s.style.pointerEvents = 'none';
-      } else {
-        s.style.visibility = 'visible';
-        s.style.pointerEvents = 'auto';
-      }
-    });
+    var active = document.querySelector('.slide.active');
+    if(!active) slides[0].classList.add('active');
   }
 
-  window.addEventListener('load', ensureVisible);
-  window.addEventListener('pageshow', ensureVisible);
-  setTimeout(ensureVisible, 250);
-  setTimeout(ensureVisible, 900);
+  window.addEventListener('load', initSlides);
+  window.addEventListener('pageshow', initSlides);
+  document.addEventListener('DOMContentLoaded', initSlides);
 })();
 </script>
 

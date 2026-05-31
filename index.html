@@ -1452,6 +1452,49 @@ html,body {
     bottom:-400px;
   }
 }
+
+/* FIX GITHUB MOBILE — paginile nu mai rămân goale */
+@media(max-width:900px) {
+  .slide.active .card,
+  .slide.active .phone,
+  .slide.active .copy,
+  .slide.active .device,
+  .slide.active .bullet,
+  .slide.active .orar-copy,
+  .slide.active .orar-feature,
+  .slide.active .orar-divider,
+  .slide.active .orar-device,
+  .slide.active .multi-copy,
+  .slide.active .multi-feature,
+  .slide.active .multi-divider,
+  .slide.active .multi-device,
+  .slide.active .whatsapp-card,
+  .slide.active .whatsapp-note,
+  .slide.active .whatsapp-arrow {
+    opacity:1 !important;
+  }
+
+  .slide.active .copy,
+  .slide.active .device,
+  .slide.active .orar-copy,
+  .slide.active .orar-device,
+  .slide.active .multi-copy,
+  .slide.active .multi-device {
+    transform:none !important;
+  }
+
+  .slide {
+    min-height:100svh;
+    overflow:hidden;
+  }
+
+  .showcase,
+  .orar-premium,
+  .multi-premium {
+    max-height:none !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1798,6 +1841,40 @@ window.addEventListener('touchend', e => {
   if (end - touchStart > 40) goTo(current - 1);
 }, { passive:true });
 </script>
+
+<script>
+/* FIX GITHUB PAGES / MOBILE INIT */
+(function(){
+  function ensureVisible(){
+    var slides = document.querySelectorAll('.slide');
+    if(!slides.length) return;
+
+    var hasActive = false;
+    slides.forEach(function(s){
+      if(s.classList.contains('active')) hasActive = true;
+    });
+
+    if(!hasActive){
+      slides[0].classList.add('active');
+    }
+
+    slides.forEach(function(s, i){
+      if(!s.classList.contains('active')){
+        s.style.visibility = 'hidden';
+        s.style.pointerEvents = 'none';
+      } else {
+        s.style.visibility = 'visible';
+        s.style.pointerEvents = 'auto';
+      }
+    });
+  }
+
+  window.addEventListener('load', ensureVisible);
+  window.addEventListener('pageshow', ensureVisible);
+  setTimeout(ensureVisible, 250);
+  setTimeout(ensureVisible, 900);
+})();
+</script>
+
 </body>
 </html>
-

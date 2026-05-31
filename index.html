@@ -1909,6 +1909,23 @@ html,body {
   }
 
   /* Animatii sigure: nu folosesc opacity 0, doar miscare */
+
+  .slide.run .kicker {
+    animation:safeRise .45s ease both !important;
+  }
+
+  .slide.run .hero h1 {
+    animation:safeTitle .7s cubic-bezier(.18,1,.22,1) both !important;
+  }
+
+  .slide.run .hero .sub {
+    animation:safeRise .5s .12s ease both !important;
+  }
+
+  .slide.run .hero .note {
+    animation:safeRise .5s .22s ease both !important;
+  }
+
   .slide.run .metric {
     animation:safeDrop .62s cubic-bezier(.18,1.25,.24,1) both !important;
   }
@@ -1936,6 +1953,12 @@ html,body {
 
   .slide.run .whatsapp-card {
     animation:safeZoom .52s .2s ease both !important;
+  }
+
+  @keyframes safeTitle {
+    from { transform:scale(.92) translateY(22px); }
+    70% { transform:scale(1.04) translateY(0); }
+    to { transform:scale(1) translateY(0); }
   }
 
   @keyframes safeDrop {
@@ -2249,135 +2272,99 @@ html,body {
 <div class="hint">Scroll pentru următoarea pagină</div>
 
 <script>
-const slides = Array.from(document.querySelectorAll('.slide'));
-const deck = document.getElementById('deck');
-const nav = document.getElementById('nav');
-let current = 0;
-let locked = false;
-
-slides.forEach((_, i) => {
-  const d = document.createElement('div');
-  d.className = 'dot' + (i === 0 ? ' active' : '');
-  d.onclick = () => goTo(i);
-  nav.appendChild(d);
-});
-
-function buildParticles() {
-  document.querySelectorAll('.particles').forEach(box => {
-    box.innerHTML = '';
-    for (let i = 0; i < 38; i++) {
-      const s = document.createElement('span');
-      s.style.left = Math.random() * 100 + '%';
-      s.style.animationDelay = Math.random() * 7 + 's';
-      s.style.animationDuration = (5 + Math.random() * 8) + 's';
-      s.style.opacity = .25 + Math.random() * .75;
-      box.appendChild(s);
-    }
-  });
-}
-buildParticles();
-
-function goTo(index) {
-  if (index < 0 || index >= slides.length) return;
-  current = index;
-  deck.style.transform = `translateY(-${current * 100}vh)`;
-  slides.forEach((s, i) => s.classList.toggle('active', i === current));
-  Array.from(nav.children).forEach((d, i) => d.classList.toggle('active', i === current));
-}
-
-window.addEventListener('wheel', e => {
-  if (window.innerWidth <= 900) return;
-  e.preventDefault();
-  if (locked) return;
-  locked = true;
-  if (e.deltaY > 0) goTo(current + 1);
-  else goTo(current - 1);
-  setTimeout(() => locked = false, 1050);
-}, { passive:false });
-
-window.addEventListener('keydown', e => {
-  if (e.key === 'ArrowDown' || e.key === 'PageDown') goTo(current + 1);
-  if (e.key === 'ArrowUp' || e.key === 'PageUp') goTo(current - 1);
-});
-
-let touchStart = 0;
-window.addEventListener('touchstart', e => {
-  touchStart = e.touches[0].clientY;
-}, { passive:true });
-window.addEventListener('touchend', e => {
-  if (window.innerWidth <= 900) return;
-  const end = e.changedTouches[0].clientY;
-  if (touchStart - end > 40) goTo(current + 1);
-  if (end - touchStart > 40) goTo(current - 1);
-}, { passive:true });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-<script>
 (function(){
   const deck = document.getElementById('deck');
   const slides = Array.from(document.querySelectorAll('.slide'));
-  const dotsWrap = document.querySelector('.nav');
-  let index = 0;
+  const nav = document.getElementById('nav');
+
+  let current = 0;
   let locked = false;
   let startY = 0;
   let startX = 0;
+  let lastTouchMoveAt = 0;
 
-  function goTo(i){
-    if(!deck || !slides.length) return;
-
-    index = Math.max(0, Math.min(slides.length - 1, i));
-    deck.style.transform = 'translateY(' + (-index * 100) + 'svh)';
-
-    slides.forEach((s, n) => {
-      s.classList.toggle('active', n === index);
-      s.classList.remove('run');
-    });
-
-    document.querySelectorAll('.dot').forEach((d, n) => {
-      d.classList.toggle('active', n === index);
-    });
-
-    setTimeout(() => {
-      if(slides[index]) slides[index].classList.add('run');
-    }, 80);
+  function isMobile(){
+    return window.innerWidth <= 900;
   }
 
-  function step(delta){
-    if(locked) return;
-
-    if(delta > 0 && index >= slides.length - 1) return;
-    if(delta < 0 && index <= 0) return;
-
-    locked = true;
-    goTo(index + (delta > 0 ? 1 : -1));
-
-    setTimeout(() => {
-      locked = false;
-    }, 720);
+  function buildParticles(){
+    document.querySelectorAll('.particles').forEach(box => {
+      box.innerHTML = '';
+      const count = isMobile() ? 18 : 38;
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('span');
+        s.style.left = Math.random() * 100 + '%';
+        s.style.animationDelay = Math.random() * 7 + 's';
+        s.style.animationDuration = (5 + Math.random() * 8) + 's';
+        s.style.opacity = .25 + Math.random() * .75;
+        box.appendChild(s);
+      }
+    });
   }
 
-  if(dotsWrap && !dotsWrap.children.length){
+  function buildNav(){
+    if(!nav) return;
+    nav.innerHTML = '';
     slides.forEach((_, i) => {
       const dot = document.createElement('div');
       dot.className = 'dot' + (i === 0 ? ' active' : '');
       dot.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(dot);
+      nav.appendChild(dot);
     });
   }
 
+  function slideHeight(){
+    return window.innerHeight || document.documentElement.clientHeight || 700;
+  }
+
+  function goTo(index){
+    if(!deck || !slides.length) return;
+
+    current = Math.max(0, Math.min(slides.length - 1, index));
+
+    if(isMobile()){
+      deck.style.transform = 'translate3d(0,' + (-current * slideHeight()) + 'px,0)';
+    } else {
+      deck.style.transform = 'translate3d(0,' + (-current * 100) + 'vh,0)';
+    }
+
+    slides.forEach((slide, i) => {
+      const isActive = i === current;
+      slide.classList.toggle('active', isActive);
+      slide.classList.remove('run');
+
+      if(isActive){
+        window.setTimeout(() => {
+          slide.classList.add('run');
+        }, 60);
+      }
+    });
+
+    document.querySelectorAll('.dot').forEach((dot, i) => {
+      dot.classList.toggle('active', i === current);
+    });
+  }
+
+  function step(direction){
+    if(locked) return;
+
+    const next = current + (direction > 0 ? 1 : -1);
+    if(next < 0 || next >= slides.length) return;
+
+    locked = true;
+    goTo(next);
+
+    window.setTimeout(() => {
+      locked = false;
+    }, isMobile() ? 760 : 1050);
+  }
+
+  buildParticles();
+  buildNav();
+
   window.addEventListener('wheel', function(e){
     e.preventDefault();
-    step(e.deltaY);
+    step(e.deltaY > 0 ? 1 : -1);
   }, { passive:false });
 
   window.addEventListener('touchstart', function(e){
@@ -2387,7 +2374,22 @@ window.addEventListener('touchend', e => {
   }, { passive:true });
 
   window.addEventListener('touchmove', function(e){
-    e.preventDefault();
+    if(!isMobile()) return;
+    if(!e.touches || !e.touches.length) return;
+
+    const now = Date.now();
+    const currentY = e.touches[0].clientY;
+    const currentX = e.touches[0].clientX;
+    const dy = startY - currentY;
+    const dx = startX - currentX;
+
+    if(Math.abs(dy) > 46 && Math.abs(dy) > Math.abs(dx) && now - lastTouchMoveAt > 760){
+      e.preventDefault();
+      lastTouchMoveAt = now;
+      step(dy > 0 ? 1 : -1);
+      startY = currentY;
+      startX = currentX;
+    }
   }, { passive:false });
 
   window.addEventListener('touchend', function(e){
@@ -2399,7 +2401,7 @@ window.addEventListener('touchend', e => {
     const dx = startX - endX;
 
     if(Math.abs(dy) > 38 && Math.abs(dy) > Math.abs(dx)){
-      step(dy);
+      step(dy > 0 ? 1 : -1);
     }
   }, { passive:true });
 
@@ -2408,8 +2410,18 @@ window.addEventListener('touchend', e => {
     if(['ArrowUp','PageUp'].includes(e.code)) step(-1);
   });
 
-  window.addEventListener('resize', () => goTo(index));
-  window.addEventListener('load', () => goTo(0));
+  window.addEventListener('resize', function(){
+    goTo(current);
+  });
+
+  window.addEventListener('orientationchange', function(){
+    window.setTimeout(() => goTo(current), 250);
+  });
+
+  window.addEventListener('load', function(){
+    goTo(0);
+  });
+
   goTo(0);
 })();
 </script>

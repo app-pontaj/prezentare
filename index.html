@@ -1457,7 +1457,8 @@ html,body {
 
 
 
-/* FIX TELEFON — FULL PAGE + ANIMATII CINEMATICE */
+
+/* FIX SIGUR TELEFON — FULL PAGE + ANIMATII FARA PAGINI GOALE */
 @media(max-width:900px) {
   html,
   body {
@@ -1465,6 +1466,7 @@ html,body {
     height:100% !important;
     overflow:hidden !important;
     overscroll-behavior:none !important;
+    background:#000 !important;
   }
 
   #stage {
@@ -1498,6 +1500,50 @@ html,body {
   .bg,
   .particles {
     display:block !important;
+  }
+
+  /* FOARTE IMPORTANT: pe telefon nimic nu mai ramane invizibil */
+  .kicker,
+  .hero h1,
+  .hero .sub,
+  .hero .note,
+  .metric,
+  .metric:before,
+  .copy,
+  .bullet,
+  .device,
+  .full-title,
+  .fullshot,
+  .caption,
+  .counter .count,
+  .orar-copy,
+  .orar-feature,
+  .orar-divider,
+  .orar-device,
+  .multi-copy,
+  .multi-feature,
+  .multi-divider,
+  .multi-device,
+  .whatsapp-card,
+  .whatsapp-note,
+  .whatsapp-arrow,
+  .metrics,
+  .showcase,
+  .orar-premium,
+  .multi-premium,
+  .shot-img,
+  .home-shot,
+  .orar-shot,
+  .multi-shot {
+    opacity:1 !important;
+    visibility:visible !important;
+    filter:none !important;
+  }
+
+  /* Oprim animatiile CSS care ascundeau elemente */
+  .slide *,
+  .slide.active * {
+    animation:none !important;
   }
 
   /* Pagina 1 */
@@ -1862,155 +1908,60 @@ html,body {
     display:none !important;
   }
 
-  /* Stare initiala pentru animatii pe telefon */
-  .kicker,
-  .hero h1,
-  .hero .sub,
-  .hero .note,
-  .metric,
-  .copy,
-  .bullet,
-  .device,
-  .orar-copy,
-  .orar-feature,
-  .orar-divider,
-  .orar-device,
-  .multi-copy,
-  .multi-feature,
-  .multi-divider,
-  .multi-device,
-  .whatsapp-card {
-    opacity:0;
-    visibility:visible !important;
+  /* Animatii sigure: nu folosesc opacity 0, doar miscare */
+  .slide.run .metric {
+    animation:safeDrop .62s cubic-bezier(.18,1.25,.24,1) both !important;
   }
 
-  .hero h1 {
-    transform:scale(.90) translateY(22px);
-    filter:blur(8px);
+  .slide.run .metric:nth-child(2) { animation-delay:.12s !important; }
+  .slide.run .metric:nth-child(3) { animation-delay:.24s !important; }
+
+  .slide.run .copy,
+  .slide.run .orar-copy,
+  .slide.run .multi-copy {
+    animation:safeLeft .58s ease both !important;
   }
 
-  .hero .sub,
-  .hero .note,
-  .kicker {
-    transform:translateY(18px);
+  .slide.run .device,
+  .slide.run .orar-device,
+  .slide.run .multi-device {
+    animation:safePhone .62s cubic-bezier(.18,1,.22,1) both !important;
   }
 
-  .metric {
-    transform:translateY(-100svh) rotate(-8deg) scale(.88);
+  .slide.run .bullet,
+  .slide.run .orar-feature,
+  .slide.run .multi-feature {
+    animation:safeRise .46s ease both !important;
   }
 
-  .copy,
-  .orar-copy,
-  .multi-copy {
-    transform:translateX(-34px);
+  .slide.run .whatsapp-card {
+    animation:safeZoom .52s .2s ease both !important;
   }
 
-  .bullet,
-  .orar-feature,
-  .multi-feature,
-  .whatsapp-card {
-    transform:translateY(18px);
+  @keyframes safeDrop {
+    from { transform:translateY(-60px) scale(.94) rotate(-2deg); }
+    70% { transform:translateY(8px) scale(1.02) rotate(.5deg); }
+    to { transform:translateY(0) scale(1) rotate(0); }
   }
 
-  .device,
-  .orar-device,
-  .multi-device {
-    transform:translateY(24px) scale(.94);
+  @keyframes safeLeft {
+    from { transform:translateX(-34px); }
+    to { transform:translateX(0); }
   }
 
-  /* Animatii active pe telefon */
-  .slide.active .kicker {
-    animation:rise .65s .08s forwards !important;
+  @keyframes safePhone {
+    from { transform:translateY(24px) scale(.94); }
+    to { transform:translateY(0) scale(1); }
   }
 
-  .slide.active .hero h1 {
-    animation:titleIn .95s .14s cubic-bezier(.16,1.2,.24,1) forwards !important;
+  @keyframes safeRise {
+    from { transform:translateY(16px); }
+    to { transform:translateY(0); }
   }
 
-  .slide.active .hero .sub {
-    animation:rise .75s .58s forwards !important;
-  }
-
-  .slide.active .hero .note {
-    animation:fade .75s .88s forwards !important;
-  }
-
-  .slide.active .metric {
-    animation:dropCard .88s cubic-bezier(.18,1.38,.24,1) forwards !important;
-  }
-
-  .slide.active .metric:nth-child(2) {
-    animation-delay:.16s !important;
-  }
-
-  .slide.active .metric:nth-child(3) {
-    animation-delay:.32s !important;
-  }
-
-  .slide.active .copy,
-  .slide.active .orar-copy,
-  .slide.active .multi-copy {
-    animation:leftIn .78s .10s forwards !important;
-  }
-
-  .slide.active .device,
-  .slide.active .orar-device,
-  .slide.active .multi-device {
-    animation:phoneMobileIn .80s .22s cubic-bezier(.18,1,.22,1) forwards !important;
-  }
-
-  .slide.active .bullet:nth-child(1),
-  .slide.active .orar-feature:nth-child(1),
-  .slide.active .multi-feature:nth-child(1) {
-    animation:rise .48s .45s forwards !important;
-  }
-
-  .slide.active .bullet:nth-child(2),
-  .slide.active .orar-feature:nth-child(3),
-  .slide.active .multi-feature:nth-child(3) {
-    animation:rise .48s .56s forwards !important;
-  }
-
-  .slide.active .bullet:nth-child(3),
-  .slide.active .multi-feature:nth-child(5) {
-    animation:rise .48s .67s forwards !important;
-  }
-
-  .slide.active .bullet:nth-child(4),
-  .slide.active .multi-feature:nth-child(7) {
-    animation:rise .48s .78s forwards !important;
-  }
-
-  .slide.active .bullet:nth-child(5) {
-    animation:rise .48s .89s forwards !important;
-  }
-
-  .slide.active .bullet:nth-child(6) {
-    animation:rise .48s 1.00s forwards !important;
-  }
-
-  .slide.active .bullet:nth-child(7) {
-    animation:rise .48s 1.11s forwards !important;
-  }
-
-  .slide.active .bullet:nth-child(8) {
-    animation:rise .48s 1.22s forwards !important;
-  }
-
-  .slide.active .orar-divider,
-  .slide.active .multi-divider {
-    animation:fade .5s .62s forwards !important;
-  }
-
-  .slide.active .whatsapp-card {
-    animation:zoomIn .65s .92s cubic-bezier(.18,1,.22,1) forwards !important;
-  }
-
-  @keyframes phoneMobileIn {
-    to {
-      opacity:1;
-      transform:translateY(0) scale(1);
-    }
+  @keyframes safeZoom {
+    from { transform:scale(.94); }
+    to { transform:scale(1); }
   }
 }
 
@@ -2368,6 +2319,9 @@ window.addEventListener('touchend', e => {
 
 
 
+
+
+
 <script>
 (function(){
   const deck = document.getElementById('deck');
@@ -2378,33 +2332,38 @@ window.addEventListener('touchend', e => {
   let startY = 0;
   let startX = 0;
 
-  function isMobile(){
-    return window.matchMedia('(max-width:900px)').matches;
-  }
-
-  function restartAnimations(slide){
-    if(!slide) return;
-    slide.classList.remove('active');
-    void slide.offsetWidth;
-    slide.classList.add('active');
-  }
-
   function goTo(i){
     if(!deck || !slides.length) return;
+
     index = Math.max(0, Math.min(slides.length - 1, i));
     deck.style.transform = 'translateY(' + (-index * 100) + 'svh)';
-    slides.forEach((s, n) => s.classList.toggle('active', n === index));
-    document.querySelectorAll('.dot').forEach((d, n) => d.classList.toggle('active', n === index));
-    setTimeout(() => restartAnimations(slides[index]), 30);
+
+    slides.forEach((s, n) => {
+      s.classList.toggle('active', n === index);
+      s.classList.remove('run');
+    });
+
+    document.querySelectorAll('.dot').forEach((d, n) => {
+      d.classList.toggle('active', n === index);
+    });
+
+    setTimeout(() => {
+      if(slides[index]) slides[index].classList.add('run');
+    }, 80);
   }
 
   function step(delta){
     if(locked) return;
+
     if(delta > 0 && index >= slides.length - 1) return;
     if(delta < 0 && index <= 0) return;
+
     locked = true;
     goTo(index + (delta > 0 ? 1 : -1));
-    setTimeout(() => locked = false, isMobile() ? 620 : 900);
+
+    setTimeout(() => {
+      locked = false;
+    }, 720);
   }
 
   if(dotsWrap && !dotsWrap.children.length){
@@ -2433,10 +2392,12 @@ window.addEventListener('touchend', e => {
 
   window.addEventListener('touchend', function(e){
     if(!e.changedTouches || !e.changedTouches.length) return;
+
     const endY = e.changedTouches[0].clientY;
     const endX = e.changedTouches[0].clientX;
     const dy = startY - endY;
     const dx = startX - endX;
+
     if(Math.abs(dy) > 38 && Math.abs(dy) > Math.abs(dx)){
       step(dy);
     }

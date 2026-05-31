@@ -1454,48 +1454,102 @@ html,body {
 }
 
 
-/* FIX FINAL TELEFON — conținut vizibil pe toate paginile */
+
+/* FIX DEFINITIV TELEFON — toate paginile vizibile */
 @media(max-width:900px) {
-  .slide.active,
-  .slide.active * {
-    visibility:visible !important;
+  html,
+  body {
+    height:auto !important;
+    min-height:100% !important;
+    overflow-x:hidden !important;
+    overflow-y:auto !important;
   }
 
-  .slide.active .hero,
-  .slide.active .hero *,
-  .slide.active .cards,
-  .slide.active .card,
-  .slide.active .showcase,
-  .slide.active .copy,
-  .slide.active .copy *,
-  .slide.active .bullets,
-  .slide.active .bullet,
-  .slide.active .device,
-  .slide.active .device *,
-  .slide.active .orar-premium,
-  .slide.active .orar-premium *,
-  .slide.active .multi-premium,
-  .slide.active .multi-premium *,
-  .slide.active .full-title,
-  .slide.active .counter,
-  .slide.active .whatsapp-card,
-  .slide.active .whatsapp-card * {
-    opacity:1 !important;
+  #stage {
+    height:auto !important;
+    min-height:100% !important;
+    overflow:visible !important;
   }
 
-  .slide.active .copy,
-  .slide.active .device,
-  .slide.active .orar-copy,
-  .slide.active .orar-device,
-  .slide.active .multi-copy,
-  .slide.active .multi-device,
-  .slide.active .card,
-  .slide.active .phone {
+  .deck {
+    height:auto !important;
     transform:none !important;
+    transition:none !important;
   }
 
   .slide {
+    position:relative !important;
+    height:auto !important;
+    min-height:100svh !important;
     overflow:hidden !important;
+    display:flex !important;
+  }
+
+  .kicker,
+  .hero h1,
+  .hero .sub,
+  .hero .note,
+  .metric,
+  .metric:before,
+  .copy,
+  .bullet,
+  .device,
+  .full-title,
+  .fullshot,
+  .caption,
+  .counter .count,
+  .orar-copy,
+  .orar-feature,
+  .orar-divider,
+  .orar-device,
+  .multi-copy,
+  .multi-feature,
+  .multi-divider,
+  .multi-device,
+  .whatsapp-card,
+  .whatsapp-note,
+  .whatsapp-arrow {
+    opacity:1 !important;
+    visibility:visible !important;
+    transform:none !important;
+    filter:none !important;
+    animation:none !important;
+  }
+
+  .metric,
+  .copy,
+  .device,
+  .orar-copy,
+  .orar-device,
+  .multi-copy,
+  .multi-device {
+    transform:none !important;
+  }
+
+  .bg,
+  .particles {
+    display:block !important;
+  }
+
+  .metrics,
+  .showcase,
+  .orar-premium,
+  .multi-premium {
+    opacity:1 !important;
+    visibility:visible !important;
+  }
+
+  .shot-img,
+  .home-shot,
+  .orar-shot,
+  .multi-shot {
+    opacity:1 !important;
+    visibility:visible !important;
+  }
+
+  .nav,
+  .hint {
+    display:none !important;
   }
 }
 
@@ -1848,22 +1902,6 @@ window.addEventListener('touchend', e => {
 
 
 
-<script>
-/* FIX FINAL TELEFON — init sigur */
-(function(){
-  function initSlides(){
-    var slides = document.querySelectorAll('.slide');
-    if(!slides.length) return;
-
-    var active = document.querySelector('.slide.active');
-    if(!active) slides[0].classList.add('active');
-  }
-
-  window.addEventListener('load', initSlides);
-  window.addEventListener('pageshow', initSlides);
-  document.addEventListener('DOMContentLoaded', initSlides);
-})();
-</script>
 
 </body>
 </html>

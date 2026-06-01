@@ -2153,6 +2153,445 @@ html,body {
   .install-card span { margin-top:4px !important; font-size:6px !important; line-height:1.08 !important; }
 }
 
+
+/* PAGINA 9 — INCREDERE + TIMP CASTIGAT */
+.trust-premium-slide {
+  align-items:center;
+  justify-content:center;
+  padding:4.5vw;
+}
+
+.trust-premium {
+  position:relative;
+  z-index:5;
+  width:min(1260px,100%);
+  display:grid;
+  grid-template-columns:.92fr 1.08fr;
+  gap:44px;
+  align-items:center;
+}
+
+.trust-copy {
+  opacity:0;
+  transform:translateX(-56px);
+}
+
+.slide.active .trust-copy {
+  animation:leftIn 1s .16s forwards;
+}
+
+.trust-copy h2 {
+  margin:0;
+  font-size:clamp(42px,5.8vw,92px);
+  line-height:.92;
+  letter-spacing:-.07em;
+  font-weight:950;
+}
+
+.trust-copy p {
+  margin:24px 0 0;
+  max-width:650px;
+  color:rgba(255,255,255,.80);
+  font-size:clamp(18px,1.75vw,25px);
+  line-height:1.34;
+  font-weight:780;
+}
+
+.trust-final {
+  margin-top:28px;
+  padding:22px 24px;
+  border-radius:24px;
+  border:1px solid rgba(216,180,92,.58);
+  background:linear-gradient(180deg,rgba(216,180,92,.14),rgba(255,255,255,.035));
+  color:var(--gold2);
+  font-size:clamp(18px,1.7vw,24px);
+  line-height:1.22;
+  font-weight:950;
+  box-shadow:0 28px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.10);
+  opacity:0;
+  transform:translateY(24px);
+}
+
+.slide.active .trust-final {
+  animation:rise .75s 1.08s forwards;
+}
+
+.trust-visual {
+  position:relative;
+  min-height:620px;
+  display:grid;
+  place-items:center;
+}
+
+.trust-core {
+  width:min(360px,76%);
+  aspect-ratio:1;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:42px;
+  border:1px solid rgba(216,180,92,.56);
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255,242,170,.19), transparent 40%),
+    linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.018));
+  box-shadow:
+    0 42px 140px rgba(0,0,0,.66),
+    0 0 110px rgba(216,180,92,.18),
+    inset 0 1px 0 rgba(255,255,255,.10);
+  opacity:0;
+  transform:scale(.82);
+}
+
+.slide.active .trust-core {
+  animation:zoomIn 1.05s .34s cubic-bezier(.18,1,.22,1) forwards;
+}
+
+.trust-core strong {
+  display:block;
+  color:var(--gold2);
+  font-size:clamp(28px,3vw,46px);
+  line-height:.95;
+  font-weight:950;
+  letter-spacing:-.045em;
+}
+
+.trust-core span {
+  display:block;
+  margin-top:16px;
+  color:rgba(255,255,255,.70);
+  font-size:clamp(14px,1.2vw,18px);
+  line-height:1.28;
+  font-weight:750;
+}
+
+.trust-card {
+  position:absolute;
+  width:min(305px,42%);
+  border-radius:26px;
+  padding:22px 20px;
+  border:1px solid rgba(216,180,92,.44);
+  background:rgba(255,255,255,.058);
+  box-shadow:0 28px 90px rgba(0,0,0,.56), inset 0 1px 0 rgba(255,255,255,.08);
+  opacity:0;
+  transform:translateY(34px) scale(.94);
+}
+
+.trust-card.one { top:22px; left:0; }
+.trust-card.two { top:120px; right:0; }
+.trust-card.three { bottom:52px; left:50%; transform:translateX(-50%) translateY(34px) scale(.94); }
+
+.slide.active .trust-card.one { animation:trustCardIn .78s .62s cubic-bezier(.18,1.2,.22,1) forwards; }
+.slide.active .trust-card.two { animation:trustCardIn .78s .82s cubic-bezier(.18,1.2,.22,1) forwards; }
+.slide.active .trust-card.three { animation:trustCardInCenter .78s 1.02s cubic-bezier(.18,1.2,.22,1) forwards; }
+
+@keyframes trustCardIn {
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
+
+@keyframes trustCardInCenter {
+  to { opacity:1; transform:translateX(-50%) translateY(0) scale(1); }
+}
+
+.trust-card strong {
+  display:block;
+  color:var(--gold2);
+  font-size:clamp(18px,1.55vw,26px);
+  line-height:1.05;
+  font-weight:950;
+}
+
+.trust-card span {
+  display:block;
+  margin-top:10px;
+  color:rgba(255,255,255,.72);
+  font-size:clamp(13px,1.05vw,17px);
+  line-height:1.25;
+  font-weight:700;
+}
+
+.trust-ring {
+  position:absolute;
+  width:min(560px,95%);
+  aspect-ratio:1;
+  border-radius:50%;
+  border:1px solid rgba(216,180,92,.18);
+  box-shadow:0 0 80px rgba(216,180,92,.09), inset 0 0 70px rgba(216,180,92,.045);
+  opacity:0;
+  transform:scale(.82);
+}
+
+.slide.active .trust-ring {
+  animation:zoomIn 1.2s .24s cubic-bezier(.18,1,.22,1) forwards;
+}
+
+@media(max-width:900px) {
+  .trust-premium-slide { padding:18px 14px !important; }
+  .trust-premium {
+    grid-template-columns:1fr !important;
+    gap:12px !important;
+    width:100% !important;
+    height:100% !important;
+    align-content:center !important;
+  }
+  .trust-copy { transform:translateY(24px); }
+  .trust-copy h2 {
+    font-size:clamp(31px,8.8vw,43px) !important;
+    line-height:.98 !important;
+  }
+  .trust-copy p {
+    margin-top:8px !important;
+    font-size:clamp(12px,3.35vw,15px) !important;
+    line-height:1.18 !important;
+  }
+  .trust-final {
+    margin-top:9px !important;
+    padding:10px 12px !important;
+    border-radius:16px !important;
+    font-size:clamp(12px,3.35vw,16px) !important;
+  }
+  .trust-visual { min-height:0 !important; height:46vh !important; }
+  .trust-ring { width:250px !important; }
+  .trust-core {
+    width:150px !important;
+    padding:20px !important;
+  }
+  .trust-core strong { font-size:clamp(18px,5.2vw,25px) !important; }
+  .trust-core span {
+    margin-top:8px !important;
+    font-size:clamp(8px,2.3vw,11px) !important;
+    line-height:1.13 !important;
+  }
+  .trust-card {
+    width:148px !important;
+    padding:10px 9px !important;
+    border-radius:15px !important;
+  }
+  .trust-card.one { top:0 !important; left:0 !important; }
+  .trust-card.two { top:54px !important; right:0 !important; }
+  .trust-card.three { bottom:4px !important; left:50% !important; }
+  .trust-card strong { font-size:clamp(10px,2.9vw,13px) !important; }
+  .trust-card span {
+    margin-top:5px !important;
+    font-size:clamp(8px,2.25vw,10px) !important;
+    line-height:1.08 !important;
+  }
+}
+
+
+/* PAGINA 10 — CONTACT PREMIUM */
+.contact-premium-slide {
+  align-items:center;
+  justify-content:center;
+  padding:4.5vw;
+}
+
+.contact-premium {
+  position:relative;
+  z-index:5;
+  width:min(1180px,100%);
+  display:grid;
+  grid-template-columns:1fr;
+  gap:34px;
+  align-items:center;
+  justify-items:center;
+  text-align:center;
+}
+
+.contact-copy {
+  opacity:0;
+  transform:translateY(34px);
+}
+
+.slide.active .contact-copy {
+  animation:rise 1s .16s forwards;
+}
+
+.contact-copy h2 {
+  margin:0;
+  max-width:1030px;
+  font-size:clamp(44px,6.8vw,104px);
+  line-height:.9;
+  letter-spacing:-.075em;
+  font-weight:950;
+}
+
+.contact-copy p {
+  margin:26px auto 0;
+  max-width:860px;
+  color:rgba(255,255,255,.80);
+  font-size:clamp(18px,1.85vw,27px);
+  line-height:1.34;
+  font-weight:780;
+}
+
+.contact-grid {
+  width:min(920px,100%);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.contact-card {
+  border-radius:30px;
+  padding:28px 26px;
+  border:1px solid rgba(216,180,92,.45);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,242,170,.13), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.022));
+  box-shadow:0 34px 110px rgba(0,0,0,.62), inset 0 1px 0 rgba(255,255,255,.10);
+  opacity:0;
+  transform:translateY(44px) scale(.94);
+}
+
+.slide.active .contact-card:nth-child(1) {
+  animation:customCardIn .82s .66s cubic-bezier(.18,1.2,.22,1) forwards;
+}
+
+.slide.active .contact-card:nth-child(2) {
+  animation:customCardIn .82s .84s cubic-bezier(.18,1.2,.22,1) forwards;
+}
+
+.contact-card strong {
+  display:block;
+  color:var(--gold2);
+  font-size:clamp(21px,1.75vw,30px);
+  line-height:1.05;
+  font-weight:950;
+}
+
+.contact-card span {
+  display:block;
+  margin-top:12px;
+  color:rgba(255,255,255,.72);
+  font-size:clamp(14px,1.14vw,18px);
+  line-height:1.32;
+  font-weight:700;
+}
+
+.contact-final {
+  margin-top:4px;
+  color:var(--gold2);
+  font-size:clamp(24px,2.7vw,42px);
+  line-height:1.05;
+  font-weight:950;
+  opacity:0;
+  transform:translateY(28px);
+}
+
+.slide.active .contact-final {
+  animation:rise .8s 1.08s forwards;
+}
+
+.contact-signature {
+  margin-top:8px;
+  min-width:min(520px,92vw);
+  padding:26px 34px;
+  border-radius:30px;
+  border:1px solid rgba(216,180,92,.68);
+  background:linear-gradient(180deg,rgba(216,180,92,.15),rgba(255,255,255,.035));
+  box-shadow:
+    0 38px 120px rgba(0,0,0,.64),
+    0 0 72px rgba(216,180,92,.18),
+    inset 0 1px 0 rgba(255,255,255,.11);
+  opacity:0;
+  transform:translateY(34px) scale(.94);
+}
+
+.slide.active .contact-signature {
+  animation:zoomIn .85s 1.30s cubic-bezier(.18,1,.22,1) forwards;
+}
+
+.contact-name {
+  color:#fff;
+  font-size:clamp(24px,2.4vw,38px);
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-.04em;
+}
+
+.contact-phone {
+  margin-top:13px;
+  color:var(--gold2);
+  font-size:clamp(23px,2.2vw,36px);
+  line-height:1;
+  font-weight:950;
+  letter-spacing:.02em;
+  text-shadow:0 0 32px rgba(216,180,92,.28);
+}
+
+.contact-glow {
+  position:absolute;
+  width:min(720px,72vw);
+  aspect-ratio:1;
+  border-radius:50%;
+  border:1px solid rgba(216,180,92,.16);
+  box-shadow:0 0 110px rgba(216,180,92,.10), inset 0 0 90px rgba(216,180,92,.05);
+  opacity:0;
+  transform:scale(.72);
+}
+
+.slide.active .contact-glow {
+  animation:zoomIn 1.35s .18s cubic-bezier(.18,1,.22,1) forwards;
+}
+
+@media(max-width:900px) {
+  .contact-premium-slide { padding:18px 14px !important; }
+  .contact-premium {
+    gap:13px !important;
+    width:100% !important;
+    height:100% !important;
+    align-content:center !important;
+  }
+  .contact-copy h2 {
+    font-size:clamp(32px,9.4vw,46px) !important;
+    line-height:.98 !important;
+  }
+  .contact-copy p {
+    margin-top:10px !important;
+    font-size:clamp(12px,3.35vw,15px) !important;
+    line-height:1.18 !important;
+  }
+  .contact-grid {
+    grid-template-columns:1fr !important;
+    gap:8px !important;
+    width:100% !important;
+  }
+  .contact-card {
+    padding:13px 12px !important;
+    border-radius:16px !important;
+  }
+  .contact-card strong {
+    font-size:clamp(13px,3.7vw,17px) !important;
+  }
+  .contact-card span {
+    margin-top:6px !important;
+    font-size:clamp(10px,2.85vw,12px) !important;
+    line-height:1.12 !important;
+  }
+  .contact-final {
+    font-size:clamp(17px,5vw,24px) !important;
+    line-height:1.08 !important;
+  }
+  .contact-signature {
+    margin-top:0 !important;
+    min-width:0 !important;
+    width:100% !important;
+    padding:17px 18px !important;
+    border-radius:20px !important;
+  }
+  .contact-name {
+    font-size:clamp(18px,5.4vw,25px) !important;
+  }
+  .contact-phone {
+    margin-top:9px !important;
+    font-size:clamp(19px,5.6vw,27px) !important;
+  }
+  .contact-glow {
+    width:310px !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -2494,6 +2933,76 @@ html,body {
         </div>
       </div>
     </section>
+
+    <section class="slide trust-premium-slide">
+      <div class="bg"></div>
+      <div class="particles"></div>
+      <div class="trust-premium">
+        <div class="trust-copy">
+          <div class="kicker">Timp castigat</div>
+          <h2>Mai mult timp<br><span class="goldText">pentru ceea ce conteaza.</span></h2>
+          <p>Timpul tau este valoros. Aplicatia elimina orele pierdute cu organizarea manuala si iti ofera mai mult timp pentru clientii tai.</p>
+          <div class="trust-final">Timpul castigat valoreaza mai mult decat costul aplicatiei.</div>
+        </div>
+
+        <div class="trust-visual">
+          <div class="trust-ring"></div>
+          <div class="trust-core">
+            <div>
+              <strong>Organizare clara</strong>
+              <span>Mai putina munca manuala. Mai mult control.</span>
+            </div>
+          </div>
+
+          <div class="trust-card one">
+            <strong>Castigi timp in fiecare zi</strong>
+            <span>Programarile, confirmarile si organizarea devin simple.</span>
+          </div>
+
+          <div class="trust-card two">
+            <strong>Investesti in eficienta</strong>
+            <span>O solutie care economiseste timp luna dupa luna.</span>
+          </div>
+
+          <div class="trust-card three">
+            <strong>Datele tale raman protejate</strong>
+            <span>Contactele si informatiile clientilor sunt pastrate intr-o baza de date sigura.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide contact-premium-slide">
+      <div class="bg"></div>
+      <div class="particles"></div>
+      <div class="contact-glow"></div>
+      <div class="contact-premium">
+        <div class="contact-copy">
+          <div class="kicker">Demo live</div>
+          <h2>Hai sa construim<br><span class="goldText">aplicatia potrivita pentru tine.</span></h2>
+          <p>Intr-un demo live de 30 de minute vezi cum aplicatia poate fi adaptata exact pe modul tau de lucru.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <strong>Demo personalizat</strong>
+            <span>Vezi functiile, automatizarile si posibilitatile de personalizare.</span>
+          </div>
+          <div class="contact-card">
+            <strong>Creata in jurul afacerii tale</strong>
+            <span>Nu primesti un sistem rigid. Primesti un instrument construit pentru tine.</span>
+          </div>
+        </div>
+
+        <div class="contact-final">Transforma timpul pierdut in timp castigat.</div>
+
+        <div class="contact-signature">
+          <div class="contact-name">Mihai Florescu</div>
+          <div class="contact-phone">0722 367 594</div>
+        </div>
+      </div>
+    </section>
+
 
   </div>
 </div>

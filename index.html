@@ -1906,6 +1906,187 @@ html,body {
   }
 }
 
+
+/* PAGINA 7 — CUSTOMIZARE PREMIUM */
+.custom-premium-slide {
+  align-items:center;
+  justify-content:center;
+  padding:4.5vw;
+}
+
+.custom-premium {
+  position:relative;
+  z-index:5;
+  width:min(1240px,100%);
+  display:grid;
+  grid-template-columns:.95fr 1.05fr;
+  gap:42px;
+  align-items:center;
+}
+
+.custom-copy {
+  opacity:0;
+  transform:translateX(-56px);
+}
+
+.slide.active .custom-copy {
+  animation:leftIn 1s .16s forwards;
+}
+
+.custom-copy h2 {
+  margin:0;
+  font-size:clamp(42px,5.8vw,92px);
+  line-height:.92;
+  letter-spacing:-.07em;
+  font-weight:950;
+}
+
+.custom-copy p {
+  margin:24px 0 0;
+  max-width:620px;
+  color:rgba(255,255,255,.78);
+  font-size:clamp(17px,1.75vw,24px);
+  line-height:1.34;
+  font-weight:750;
+}
+
+.custom-final {
+  margin-top:30px;
+  padding:22px 24px;
+  border-radius:24px;
+  border:1px solid rgba(216,180,92,.55);
+  background:linear-gradient(180deg,rgba(216,180,92,.13),rgba(255,255,255,.035));
+  color:var(--gold2);
+  font-size:clamp(18px,1.7vw,24px);
+  line-height:1.22;
+  font-weight:950;
+  box-shadow:0 28px 90px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.10);
+  opacity:0;
+  transform:translateY(24px);
+}
+
+.slide.active .custom-final {
+  animation:rise .75s 1.18s forwards;
+}
+
+.custom-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.custom-card {
+  min-height:210px;
+  border-radius:30px;
+  padding:28px 24px;
+  border:1px solid rgba(216,180,92,.42);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,242,170,.15), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.024));
+  box-shadow:0 34px 110px rgba(0,0,0,.62), inset 0 1px 0 rgba(255,255,255,.10);
+  opacity:0;
+  transform:translateY(52px) scale(.94);
+  position:relative;
+  overflow:hidden;
+}
+
+.custom-card:before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.15) 40%, transparent 64%);
+  transform:translateX(-140%);
+}
+
+.slide.active .custom-card {
+  animation:customCardIn .82s cubic-bezier(.18,1.2,.22,1) forwards;
+}
+
+.slide.active .custom-card:nth-child(1) { animation-delay:.56s; }
+.slide.active .custom-card:nth-child(2) { animation-delay:.72s; }
+.slide.active .custom-card:nth-child(3) { animation-delay:.88s; }
+.slide.active .custom-card:nth-child(4) { animation-delay:1.04s; }
+.slide.active .custom-card:before { animation:shine .95s 1.18s ease forwards; }
+
+@keyframes customCardIn {
+  to { opacity:1; transform:translateY(0) scale(1); }
+}
+
+.custom-card strong {
+  display:block;
+  color:var(--gold2);
+  font-size:clamp(21px,1.75vw,30px);
+  line-height:1.05;
+  font-weight:950;
+}
+
+.custom-card span {
+  display:block;
+  margin-top:14px;
+  color:rgba(255,255,255,.72);
+  font-size:clamp(14px,1.14vw,18px);
+  line-height:1.32;
+  font-weight:700;
+}
+
+@media(max-width:900px) {
+  .custom-premium-slide {
+    padding:18px 14px !important;
+  }
+
+  .custom-premium {
+    grid-template-columns:1fr !important;
+    gap:13px !important;
+    width:100% !important;
+    height:100% !important;
+    align-content:center !important;
+  }
+
+  .custom-copy {
+    transform:translateY(24px);
+  }
+
+  .custom-copy h2 {
+    font-size:clamp(31px,8.8vw,43px) !important;
+    line-height:.98 !important;
+  }
+
+  .custom-copy p {
+    margin-top:9px !important;
+    font-size:clamp(12px,3.35vw,15px) !important;
+    line-height:1.18 !important;
+  }
+
+  .custom-final {
+    margin-top:10px !important;
+    padding:11px 13px !important;
+    border-radius:16px !important;
+    font-size:clamp(12px,3.35vw,16px) !important;
+  }
+
+  .custom-grid {
+    grid-template-columns:1fr 1fr !important;
+    gap:8px !important;
+  }
+
+  .custom-card {
+    min-height:0 !important;
+    padding:13px 10px !important;
+    border-radius:16px !important;
+  }
+
+  .custom-card strong {
+    font-size:clamp(12px,3.35vw,16px) !important;
+    line-height:1.05 !important;
+  }
+
+  .custom-card span {
+    margin-top:6px !important;
+    font-size:clamp(9px,2.65vw,12px) !important;
+    line-height:1.12 !important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1919,7 +2100,7 @@ html,body {
         <div class="kicker">Premium Scheduling System</div>
         <h1>NU ESTE<br>O AGENDĂ</h1>
         <div class="sub">Este sistemul care transformă programările într-un proces rapid, clar și controlat.</div>
-        <div class="note">Mai puțin timp pierdut cu organizarea. Mai mult timp pentru pacienți.</div>
+        <div class="note">Mai puțin timp pierdut cu organizarea. Mai mult timp pentru clienți.</div>
       </div>
     </section>
 
@@ -1930,12 +2111,12 @@ html,body {
         <div class="metric">
           <div class="num">&lt;10s</div>
           <h2>Programare nouă</h2>
-          <p>Cu confirmare WhatsApp inclusă, trimisă manual de psiholog.</p>
+          <p>Cu confirmare WhatsApp inclusă, trimisă manual de specialist.</p>
         </div>
         <div class="metric">
           <div class="num">10</div>
           <h2>Ședințe</h2>
-          <p>Planificate în mai puțin de 2 minute pentru același pacient.</p>
+          <p>Planificate în mai puțin de 2 minute pentru același client.</p>
         </div>
         <div class="metric">
           <div class="num">3 luni</div>
@@ -2097,7 +2278,7 @@ html,body {
                 </svg>
               </div>
               <div>
-                <strong>Trimiți pacientului confirmarea</strong>
+                <strong>Trimiți clientului confirmarea</strong>
                 <span>tuturor programărilor pe Whatsapp printr-un singur click.</span>
               </div>
             </div>
@@ -2150,7 +2331,7 @@ html,body {
 
           <div class="whatsapp-note">
             <strong>Confirmare trimisă</strong>
-            <span>pacientului pe Whatsapp într-un singur click!</span>
+            <span>clientului pe Whatsapp într-un singur click!</span>
           </div>
 
           <div class="whatsapp-card">
@@ -2184,6 +2365,41 @@ html,body {
           ✓ Concedii salvate automat<br>
           ✓ Pauze personale și ore blocate<br>
           ✓ Fără programări peste timpul tău liber
+        </div>
+      </div>
+    </section>
+
+
+    <section class="slide custom-premium-slide">
+      <div class="bg"></div>
+      <div class="particles"></div>
+      <div class="custom-premium">
+        <div class="custom-copy">
+          <div class="kicker">Aplicație customizabilă</div>
+          <h2>Creată pentru<br><span class="goldText">modul tău de lucru.</span></h2>
+          <p>Nu este o aplicație fixă. Se adaptează după fiecare client, fiecare business și fiecare mod de organizare.</p>
+          <div class="custom-final">
+            Nu te adaptezi tu la aplicație.<br>Aplicația se adaptează la tine.
+          </div>
+        </div>
+
+        <div class="custom-grid">
+          <div class="custom-card">
+            <strong>100% personalizabilă</strong>
+            <span>Adaptată după nevoile fiecărui business.</span>
+          </div>
+          <div class="custom-card">
+            <strong>Funcții noi la cerere</strong>
+            <span>Adăugăm exact ce ai nevoie.</span>
+          </div>
+          <div class="custom-card">
+            <strong>Rapoarte personalizate</strong>
+            <span>Date importante, afișate simplu și clar.</span>
+          </div>
+          <div class="custom-card">
+            <strong>Automatizări inteligente</strong>
+            <span>Mai puțină muncă manuală, mai mult control.</span>
+          </div>
         </div>
       </div>
     </section>
